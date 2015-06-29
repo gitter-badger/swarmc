@@ -1,4 +1,4 @@
-#include <swarm/base.h>
+#include <base.h>
 
 static int file_exists(char* file_name) {
   return access(file_name, F_OK) != -1;
@@ -20,6 +20,7 @@ int run_lua(char* main_file, int debug) {
       fprintf(stdout, RED "debug: " CYAN "opening lua libraries.\n" RESET);
 
     luaL_openlibs(L);
+    api_swarm_open(L);
 
     if (debug)
       fprintf(stdout, RED "debug: " CYAN "trying to load lua script %s.\n" RESET, main_file);

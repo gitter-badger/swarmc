@@ -41,7 +41,8 @@ THE SOFTWARE.
 
 #include <getopt.h>
 
-#include <swarm/colors.h>
+#include <colors.h>
+#include <api/swarm.h>
 
 #ifndef LUA_VERSION_NUM
 #error "This computer does not have the proper Lua headers. Please install them."
@@ -57,7 +58,9 @@ static inline void bail(lua_State *L, char *msg){
 	exit(1);
 }
 
-int run_lua(char*, int);
+typedef void (*swarm_api_t)(lua_State *L);
+
+int run_lua(char*, int, swarm_api_t*);
 
 #define ELOADFILE 0x1ff
 #define ENOPARAM 0x2ff

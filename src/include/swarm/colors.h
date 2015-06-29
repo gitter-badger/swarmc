@@ -25,7 +25,7 @@ THE SOFTWARE.
 #ifndef SWARM_COLORS
 #define SWARM_COLORS
 
-#include <swarm/base.h>
+#include <base.h>
 
 #define RESET   "\e[0m"
 #define RED     "\e[1;31m"
