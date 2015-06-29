@@ -88,39 +88,35 @@ int main(int argc, char const *argv[]) {
       case 'm':
         if (optarg)
           main_file = optarg;
+        else
+          fprintf(stderr, RED "--main-file or -m " RESET "requires an argument.");
       break;
 
     }
   }
 
-  if (!main_file) {
-    fprintf(stderr, RED "\nmain file " RESET "is not defined.");
-  } else {
-    if (debug)
-      fprintf(stdout, RED "debug: " CYAN "creating lua state.\n" RESET);
-    lua_State* L = luaL_newstate();
+  if(run_lua(main_file, debug) == -1) {
+    fprintf(stderr, RED "swarmc "
+      RESET "failed to execute.\n"
+    );
+    switch(errno) {
+      case ENOPARAM:
+        fprintf(stderr, RED "error: " RESET " main file is not defined.\n");
+      break;
 
-    if (debug)
-      fprintf(stdout, RED "debug: " CYAN "opening lua libraries.\n" RESET);
+      case ELOADFILE:
+        fprintf(stderr, RED "error: " RESET "loadfile failed.\n");
+      break;
 
-    luaL_openlibs(L);
+      case EPCALL:
+        fprintf(stderr, RED "error: " RESET "pcall failed.\n");
+      break;
 
-    if (debug)
-      fprintf(stdout, RED "debug: " CYAN "trying to load lua script %s.\n" RESET, main_file);
-
-    if (luaL_loadfile(L, main_file))
-      bail(L, "luaL_loadfile failed.");
-
-    if (debug)
-      fprintf(stdout, RED "debug: " CYAN "trying to execute lua script %s.\n" RESET, main_file);
-
-    if (lua_pcall(L, 0, 0, 0))
-      bail(L, "lua_pcall failed.");
-
-    if (debug)
-      fprintf(stdout, RED "debug: " CYAN "closing lua state.\n" RESET);
-
-    lua_close(L);
+      case EFNOTE:
+        fprintf(stderr, RED "error: " RESET "file %s not found.\n", main_file);
+      break;
+    }
+    exit(0);
   }
   return 0;
 }

@@ -32,7 +32,7 @@ THE SOFTWARE.
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
-
+#include <errno.h>
 #include <unistd.h>
 
 #include <lua5.1/lua.h>
@@ -57,5 +57,11 @@ static inline void bail(lua_State *L, char *msg){
 	exit(1);
 }
 
+int run_lua(char*, int);
+
+#define ELOADFILE 0x1ff
+#define ENOPARAM 0x2ff
+#define EPCALL 0x3ff
+#define EFNOTE 0x4ff
 
 #endif /* end of include guard: SWARM_BASE */
