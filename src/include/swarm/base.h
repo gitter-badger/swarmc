@@ -31,9 +31,17 @@ THE SOFTWARE.
 #endif
 #include <stddef.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 #include <unistd.h>
+
 #include <lua5.1/lua.h>
+#include <lua5.1/lauxlib.h>
+#include <lua5.1/lualib.h>
+
+#include <getopt.h>
+
+#include <swarm/colors.h>
 
 #ifndef LUA_VERSION_NUM
 #error "This computer does not have the proper Lua headers. Please install them."
@@ -42,5 +50,12 @@ THE SOFTWARE.
 #if LUA_VERSION_NUM != 501
 #error "This computer has an improper version of the Lua headers. Please install the Lua 5.1 headers."
 #endif
+
+static inline void bail(lua_State *L, char *msg){
+	fprintf(stderr, "\e[1;31m\nFATAL ERROR:\e[0m\n  %s: %s\n\n",
+		msg, lua_tostring(L, -1));
+	exit(1);
+}
+
 
 #endif /* end of include guard: SWARM_BASE */
