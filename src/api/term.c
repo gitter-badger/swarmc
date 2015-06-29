@@ -32,7 +32,8 @@ static int term_write(lua_State *lua);
 
 // methods exposed to lua
 static int term_write(lua_State *lua){
-  printf("Hello, world!");
+  const char *path = luaL_checkstring(lua, 1);
+  printf(path);
   return 1;
 }
 
