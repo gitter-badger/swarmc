@@ -7,3 +7,4 @@ CFLAGS ?= -O2 -g -fdiagnostics-color=auto
 
 all:
 	$(CC) $(CFLAGS) $(CSRC) $(INCD) $(LIBS) -o swarm.o
+	@chmod 0755 ./swarm.o

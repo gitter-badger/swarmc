@@ -8,4 +8,4 @@
 Swarm
 =====
 
-A CLI-based C-powered ComputerCraft emulator
+A extensible, lightweight, computercraft emulator. (non-graphical)
