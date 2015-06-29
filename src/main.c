@@ -24,8 +24,30 @@ THE SOFTWARE.
 
 #include <swarm/colors.h>
 
+void swarm_usage(struct _IO_FILE * descriptor) {
+  fprintf(descriptor,
+    RED "swarmc "
+    RESET "is an extensible, lightweight, computercraft emulator. (non-graphical)\n"
+    CYAN "usage: \n"
+    GREEN TAB "--main-file or -m: "
+    RESET "main file to execute\n"
+    GREEN TAB "--working-directory or -D: "
+    RESET "working directory for loadfile() calls.\n"
+    GREEN TAB "--vanilla-compat or -V: "
+    RESET "compatibility with vanilla lua.\n"
+    GREEN TAB "--strict or -S: "
+    RESET "disable compatibility with vanilla lua.\n"
+  );
+}
+
 int main(int argc, char const *argv[]) {
-  printf(RED "hello, world!\n");
+  if (argc == 1) {
+    fprintf(stderr, RED "swarmc "
+      RESET "requires 2 or more arguments.\n"
+    );
+
+    swarm_usage(stderr);
+  }
 
   return 0;
 }

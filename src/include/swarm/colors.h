@@ -38,4 +38,10 @@ THE SOFTWARE.
 
 #define CFMT "\e[%d;%dm"
 
+#ifdef __UGLY_TABS__
+#define TAB "\t"
+#else
+#define TAB "  "
+#endif
+
 #endif /* end of include guard: SWARM_COLORS */
