@@ -60,7 +60,7 @@ static inline void bail(lua_State *L, char *msg){
 
 typedef void (*swarm_api_t)(lua_State *L);
 
-int run_lua(char*, int, swarm_api_t*);
+int run_lua(char*, int);
 
 #define ELOADFILE 0x1ff
 #define ENOPARAM 0x2ff

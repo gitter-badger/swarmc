@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#include <swarm/colors.h>
+#include <colors.h>
 
 void swarm_usage(struct _IO_FILE * descriptor) {
   fprintf(descriptor,
