@@ -35,7 +35,7 @@ double term_color_int  = 0;
 
 // methods exposed to lua
 static int term_write(lua_State *lua){
-  const char *string = luaL_checkstring(lua, 1);
+  const char *string = lua_tostring(lua, 1);
 
   printf(term_color);
   printf(string);
@@ -98,8 +98,8 @@ static int term_getTextColor(lua_State *L) {
   return 1;
 }
 
-static int print(lua_State *L) {
-  const char *string = luaL_checkstring(L, 1);
+int print(lua_State *L) {
+  const char *string = lua_tostring(L, 1);
 
   printf(term_color);
   printf(string);
