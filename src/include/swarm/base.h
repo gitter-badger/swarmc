@@ -54,7 +54,7 @@ THE SOFTWARE.
 #include <getopt.h>
 
 // swarm interl headers
-#include <swarm/colors.h>
+#include <colors.h>
 
 // api headers
 #include <api/swarm.h>

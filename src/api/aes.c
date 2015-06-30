@@ -33,7 +33,7 @@ THE SOFTWARE.
   Ported to be a lua extension by Jared Allard
 **/
 
-#include <swarm/base.h>
+#include <base.h>
 #include <openssl/evp.h>
 #include <openssl/aes.h>
 
@@ -100,7 +100,7 @@ unsigned char *aes_decrypt(EVP_CIPHER_CTX *e, const char *ciphertext, int *len)
   unsigned char *plaintext = malloc(p_len);
 
   EVP_DecryptInit_ex(e, NULL, NULL, NULL, NULL);
-  EVP_DecryptUpdate(e, plaintext, &p_len, ciphertext, *len);
+  EVP_DecryptUpdate(e, plaintext, &p_len, (unsigned char*) ciphertext, *len);
   EVP_DecryptFinal_ex(e, plaintext+p_len, &f_len);
 
   *len = p_len + f_len;
@@ -115,25 +115,25 @@ int aes_doencrypt(lua_State *L) {
 
   // coimpiled in salt
   unsigned int salt[] = {12345, 54321};
-  unsigned char *key_data;
+  char *key_data;
   const char *input = lua_tostring(L, 2);
 
   /* the key_data is read from the argument list */
-  key_data = (unsigned char *)lua_tostring(L, 1);
+  key_data = (char *)lua_tostring(L, 1);
   key_data_len = strlen(key_data);
 
   /* gen key and iv. init the cipher ctx object */
-  if (aes_init(key_data, key_data_len, (unsigned char *)&salt, &en, &de)) {
+  if (aes_init((unsigned char*) key_data, key_data_len, (unsigned char *)&salt, &en, &de)) {
     printf("Couldn't initialize AES cipher\n");
     return -1;
   }
 
-  unsigned char *ciphertext;
+  char *ciphertext;
   int olen, len;
 
   /* encrypt the data */
-  olen = len = strlen(input)+1;
-  ciphertext = aes_encrypt(&en, (unsigned char *)input, &len);
+  olen = len = strlen(input) + 1;
+  ciphertext = (char* ) aes_encrypt(&en, (unsigned char *) input, &len);
 
   lua_pushstring(L, ciphertext);
 
@@ -152,15 +152,15 @@ int aes_dodecrypt(lua_State *L) {
 
   // coimpiled in salt
   unsigned int salt[] = {12345, 54321};
-  unsigned char *key_data;
+  char *key_data;
   const char *input = lua_tostring(L, 2);
 
   /* the key_data is read from the argument list */
-  key_data = (unsigned char *)lua_tostring(L, 1);
+  key_data = (char *)lua_tostring(L, 1);
   key_data_len = strlen(key_data);
 
   /* gen key and iv. init the cipher ctx object */
-  if (aes_init(key_data, key_data_len, (unsigned char *)&salt, &en, &de)) {
+  if (aes_init((unsigned char*) key_data, key_data_len, (unsigned char *)&salt, &en, &de)) {
     printf("Couldn't initialize AES cipher\n");
     return -1;
   }

@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#include <swarm/base.h>
+#include <base.h>
 
 // declare types
 static int term_write(lua_State *lua);
@@ -37,10 +37,7 @@ double term_color_int  = 0;
 static int term_write(lua_State *lua){
   const char *string = lua_tostring(lua, 1);
 
-  printf(term_color);
-  printf(string);
-  printf(RESET); // color reset
-
+  printf("%s%s" RESET, term_color, string);
   return 1;
 }
 
@@ -100,12 +97,7 @@ static int term_getTextColor(lua_State *L) {
 
 int print(lua_State *L) {
   const char *string = lua_tostring(L, 1);
-
-  printf(term_color);
-  printf(string);
-  printf("\n"); // print prints a newline
-  printf(RESET); // color reset
-
+  printf("%s%s\n" RESET, term_color, string);
   return 1;
 }
 
