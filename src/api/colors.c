@@ -26,12 +26,55 @@ THE SOFTWARE.
 
 #include <swarm/base.h>
 
-// open the term api
-void api_colors_open(lua_State *L) {
-  const struct luaL_reg term_lib[] = {
-    {"white", colors_white},
-    {"orange", colors_orange},
-    {NULL, NULL}};
 
-  luaL_openlib(L, "term", term_lib, 0);
+// build the colors object.
+void api_colors_open(lua_State *L) {
+  lua_newtable(L);
+
+  lua_pushnumber(L, colors_white);
+  lua_setfield(L, -2, "white");
+
+  lua_pushnumber(L, colors_orange);
+  lua_setfield(L, -2, "orange");
+
+  lua_pushnumber(L, colors_magenta);
+  lua_setfield(L, -2, "magenta");
+
+  lua_pushnumber(L, colors_lightBlue);
+  lua_setfield(L, -2, "lightBlue");
+
+  lua_pushnumber(L, colors_yellow);
+  lua_setfield(L, -2, "yellow");
+
+  lua_pushnumber(L, colors_lime);
+  lua_setfield(L, -2, "lime");
+
+  lua_pushnumber(L, colors_pink);
+  lua_setfield(L, -2, "pink");
+
+  lua_pushnumber(L, colors_lightGray);
+  lua_setfield(L, -2, "lightGray");
+
+  lua_pushnumber(L, colors_cyan);
+  lua_setfield(L, -2, "cyan");
+
+  lua_pushnumber(L, colors_purple);
+  lua_setfield(L, -2, "purple");
+
+  lua_pushnumber(L, colors_blue);
+  lua_setfield(L, -2, "blue");
+
+  lua_pushnumber(L, colors_brown);
+  lua_setfield(L, -2, "brown");
+
+  lua_pushnumber(L, colors_green);
+  lua_setfield(L, -2, "green");
+
+  lua_pushnumber(L, colors_red);
+  lua_setfield(L, -2, "red");
+
+  lua_pushnumber(L, colors_black);
+  lua_setfield(L, -2, "black");
+
+  lua_setglobal(L, "colors");
 }
