@@ -28,12 +28,60 @@ THE SOFTWARE.
 
 // declare types
 static int term_write(lua_State *lua);
+static int term_setTextColor(lua_State *lua);
+
+// current term colour
+static char *term_color = "";
 
 
 // methods exposed to lua
 static int term_write(lua_State *lua){
-  const char *path = luaL_checkstring(lua, 1);
-  printf(path);
+  const char *string = luaL_checkstring(lua, 1);
+
+  printf(term_color);
+  printf(string);
+  printf(RESET); // color reset
+
+  return 1;
+}
+
+/**
+ * Set the text color
+ **/
+static int term_setTextColor(lua_State *lua) {
+  int color = luaL_checknumber(lua, 1);
+
+  // check the colors.
+  switch(color) {
+    case colors_white:
+      term_color = WHITE;
+    break;
+
+    case colors_red:
+      term_color = RED;
+    break;
+
+    case colors_yellow:
+      term_color = YELLOW;
+    break;
+
+    case colors_blue:
+      term_color = BLUE;
+    break;
+
+    case colors_cyan:
+      term_color = CYAN;
+    break;
+
+    case colors_purple:
+      term_color = PURPLE;
+    break;
+
+    case colors_green:
+      term_color = GREEN;
+    break;
+  }
+
   return 1;
 }
 
@@ -41,6 +89,7 @@ static int term_write(lua_State *lua){
 void api_term_open(lua_State *L) {
   const struct luaL_reg term_lib[] = {
     {"write", term_write},
+    {"setTextColor", term_setTextColor},
     {NULL, NULL}};
 
   luaL_openlib(L, "term", term_lib, 0);

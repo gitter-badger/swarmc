@@ -23,6 +23,7 @@ int run_lua(char* main_file, int debug) {
     api_fs_open(L);
     api_swarm_open(L);
     api_term_open(L);
+    api_colors_open(L);
 
     if (debug)
       fprintf(stdout, RED "debug: " CYAN "trying to load lua script %s.\n" RESET, main_file);

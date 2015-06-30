@@ -22,44 +22,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#ifndef SWARM_COLORS
-#define SWARM_COLORS
+// i have no fucking clue what I am doing
 
-#include <base.h>
+#include <swarm/base.h>
 
-// number definitions
-#define colors_white      1
-#define colors_orange     2
-#define colors_magenta    4
-#define colors_lightBlue  8
-#define colors_yellow     16
-#define colors_lime       32
-#define colors_pink       64
-#define colors_gray       128
-#define colors_lightGray  256
-#define colors_cyan       512
-#define colors_purple     1024
-#define colors_blue       2048
-#define colors_brown      4096
-#define colors_green      8192
-#define colors_red        16384
-#define colors_black      32768
+// open the term api
+void api_colors_open(lua_State *L) {
+  const struct luaL_reg term_lib[] = {
+    {"white", colors_white},
+    {"orange", colors_orange},
+    {NULL, NULL}};
 
-#define RESET   "\e[0m"
-#define RED     "\e[1;31m"
-#define GREEN   "\e[1;32m"
-#define YELLOW  "\e[1;33m"
-#define BLUE    "\e[1;34m"
-#define PURPLE  "\e[1;35m"
-#define CYAN    "\e[1;36m"
-#define WHITE   "\e[1;37m"
-
-#define CFMT "\e[%d;%dm"
-
-#ifdef __UGLY_TABS__
-#define TAB "\t"
-#else
-#define TAB "  "
-#endif
-
-#endif /* end of include guard: SWARM_COLORS */
+  luaL_openlib(L, "term", term_lib, 0);
+}
