@@ -59,7 +59,7 @@ static struct option opts[] = {
   {0, 0, 0, 0}
 };
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char *const argv[]) {
   if (argc == 1) {
     fprintf(stderr, RED "swarmc "
       RESET "requires 2 or more arguments.\n"

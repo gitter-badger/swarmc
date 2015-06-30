@@ -22,34 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-#include <swarm/base.h>
+#ifndef AES_API_FS
+#define AES_API_FS
 
-// forward declarations
-static int os_version(lua_State *L);
-static int os_getComputerID(lua_State *L);
+#include <base.h>
 
-/**
- * Get the SWARM_EMULATED_VERSION
- **/
-static int os_version(lua_State *L) {
-  lua_pushstring(L,SWARM_EMULATED_VERSION);
-  return 1;
-}
+void api_aes_open(lua_State *L);
 
-/**
- * Get the emulated computer ID.
- **/
-static int os_getComputerID(lua_State *L) {
-  lua_pushnumber(L, 1);
-  return 1;
-}
-
-// open the fs api
-void api_os_open(lua_State *L) {
-  const struct luaL_reg os_lib[] = {
-    {"version", os_version},
-    {"getComputerID", os_getComputerID},
-    {NULL, NULL}};
-
-  luaL_openlib(L, "os", os_lib, 0);
-}
+#endif /* end of include guard: AES_API_FS */

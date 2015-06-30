@@ -25,10 +25,15 @@ THE SOFTWARE.
 #ifndef SWARM_BASE
 #define SWARM_BASE
 
+/* emulator version */
+#define SWARM_VERSION                "1.0"
+#define SWARM_VERSION_FLOAT          1.0
+#define SWARM_VERSION_INT            10
+
 /* emulated version */
-#define SWARM_EMULATED_VERSION "CraftOS 1.7"
+#define SWARM_EMULATED_VERSION       "CraftOS 1.7"
 #define SWARM_EMULATED_VERSION_FLOAT 1.7
-#define SWARM_EMULATED_VERISON_INT 17
+#define SWARM_EMULATED_VERISON_INT   17
 
 #include <stdio.h>
 #ifndef __cplusplus
@@ -57,6 +62,7 @@ THE SOFTWARE.
 #include <api/term.h>
 #include <api/colors.h>
 #include <api/os.h>
+#include <api/aes.h>
 
 #ifndef LUA_VERSION_NUM
 #error "This computer does not have the proper Lua headers. Please install them."
