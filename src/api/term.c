@@ -22,16 +22,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// i have no fucking clue what I am doing
-
 #include <swarm/base.h>
 
 // declare types
 static int term_write(lua_State *lua);
 static int term_setTextColor(lua_State *lua);
 
-// current term colour
-static char *term_color = "";
+// default text colors
+const char *term_color = 1;
+double term_color_int  = 1;
 
 
 // methods exposed to lua
@@ -82,6 +81,27 @@ static int term_setTextColor(lua_State *lua) {
     break;
   }
 
+  term_color_int = color;
+
+  return 1;
+}
+
+/**
+ * Get the text color
+ **/
+static int term_getTextColor(lua_State *L) {
+  lua_pushnumber(L, term_color_int);
+  return 1;
+}
+
+static int print(lua_State *L) {
+  const char *string = luaL_checkstring(L, 1);
+
+  printf(term_color);
+  printf(string);
+  printf("\n"); // print prints a newline
+  printf(RESET); // color reset
+
   return 1;
 }
 
@@ -90,7 +110,13 @@ void api_term_open(lua_State *L) {
   const struct luaL_reg term_lib[] = {
     {"write", term_write},
     {"setTextColor", term_setTextColor},
+    {"setTextColour", term_setTextColor},
+    {"getTextColor", term_getTextColor},
+    {"getTextColour", term_getTextColor},
     {NULL, NULL}};
+
+  lua_pushcfunction(L, print);
+  lua_setglobal(L, "print");
 
   luaL_openlib(L, "term", term_lib, 0);
 }

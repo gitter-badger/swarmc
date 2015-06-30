@@ -41,8 +41,14 @@ THE SOFTWARE.
 
 #include <getopt.h>
 
-#include <colors.h>
+// swarm interl headers
+#include <swarm/colors.h>
+
+// api headers
 #include <api/swarm.h>
+#include <api/fs.h>
+#include <api/term.h>
+#include <api/colors.h>
 
 #ifndef LUA_VERSION_NUM
 #error "This computer does not have the proper Lua headers. Please install them."
