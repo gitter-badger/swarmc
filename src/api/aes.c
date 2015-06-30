@@ -42,8 +42,7 @@ THE SOFTWARE.
  * Fills in the encryption and decryption ctx objects and returns 0 on success
  **/
 int aes_init(unsigned char *key_data, int key_data_len, unsigned char *salt, EVP_CIPHER_CTX *e_ctx,
-             EVP_CIPHER_CTX *d_ctx)
-{
+             EVP_CIPHER_CTX *d_ctx) {
   int i, nrounds = 5;
   unsigned char key[32], iv[32];
 
@@ -70,8 +69,7 @@ int aes_init(unsigned char *key_data, int key_data_len, unsigned char *salt, EVP
  * Encrypt *len bytes of data
  * All data going in & out is considered binary (unsigned char[])
  */
-unsigned char *aes_encrypt(EVP_CIPHER_CTX *e, unsigned char *plaintext, int *len)
-{
+unsigned char *aes_encrypt(EVP_CIPHER_CTX *e, unsigned char *plaintext, int *len) {
   /* max ciphertext len for a n bytes of plaintext is n + AES_BLOCK_SIZE -1 bytes */
   int c_len = *len + AES_BLOCK_SIZE, f_len = 0;
   unsigned char *ciphertext = malloc(c_len);
@@ -93,8 +91,7 @@ unsigned char *aes_encrypt(EVP_CIPHER_CTX *e, unsigned char *plaintext, int *len
 /*
  * Decrypt *len bytes of ciphertext
  */
-unsigned char *aes_decrypt(EVP_CIPHER_CTX *e, const char *ciphertext, int *len)
-{
+unsigned char *aes_decrypt(EVP_CIPHER_CTX *e, const char *ciphertext, int *len) {
   /* plaintext will always be equal to or lesser than length of ciphertext*/
   int p_len = *len, f_len = 0;
   unsigned char *plaintext = malloc(p_len);
