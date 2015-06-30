@@ -14,3 +14,4 @@ A extensible, lightweight, computercraft emulator. (non-graphical)
 ## Build Dependencies
 
   * OpenSSL
+  * Lua

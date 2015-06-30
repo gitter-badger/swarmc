@@ -17,4 +17,4 @@ This is a general roadmap of things to be implemented.
 
   * [ ] sha256 - possibly include openssl.
   * [ ] base64
-  * [ ] aes - AES-NI ASM equivlant.
+  * [x] aes - compatible with SquidDev's AES lib.
