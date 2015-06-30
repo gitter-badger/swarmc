@@ -29,8 +29,8 @@ static int term_write(lua_State *lua);
 static int term_setTextColor(lua_State *lua);
 
 // default text colors
-const char *term_color = 1;
-double term_color_int  = 1;
+const char *term_color = RESET;
+double term_color_int  = 0;
 
 
 // methods exposed to lua
@@ -52,6 +52,10 @@ static int term_setTextColor(lua_State *lua) {
 
   // check the colors.
   switch(color) {
+    case 0:
+      term_color = RESET;
+    break;
+
     case colors_white:
       term_color = WHITE;
     break;
