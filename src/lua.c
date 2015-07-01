@@ -52,8 +52,10 @@ int run_lua(char* main_file, int debug) {
     api_os_open(L);
     api_http_open(L);
 
+
     /* crypto */
     api_aes_open(L);
+    load_sha256_hash(L);
 
     if (debug)
       fprintf(stdout, RED "debug: " CYAN "trying to load lua script %s.\n" RESET, main_file);

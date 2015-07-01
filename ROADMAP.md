@@ -15,6 +15,6 @@ This is a general roadmap of things to be implemented.
 
   These are general globals/functions that should be overrided with [faster] C equivlants.
 
-  * [ ] sha256 - possibly include openssl.
+  * [x] sha256 - possibly include openssl.
   * [ ] base64
   * [x] aes - compatible with SquidDev's AES lib.

@@ -65,6 +65,9 @@ THE SOFTWARE.
 #include <api/aes.h>
 #include <api/http.h>
 
+// crypto stuff
+#include <crypto/hash/sha256.h>
+
 #ifndef LUA_VERSION_NUM
 #error "This computer does not have the proper Lua headers. Please install them."
 #endif
