@@ -8,6 +8,8 @@
 Swarm
 =====
 
+[![Join the chat at https://gitter.im/jaredallard/swarmc](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jaredallard/swarmc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A extensible, lightweight, computercraft emulator. (non-graphical)
 
 
