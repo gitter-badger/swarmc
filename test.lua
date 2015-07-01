@@ -24,3 +24,6 @@ if dec_string ~= string then
 else
   print("Equal! :)")
 end
+
+print("Fetch google.com");
+print(http.get("http://google.com"));

@@ -23,6 +23,7 @@ THE SOFTWARE.
 */
 
 #include <base.h>
+#include <colors.h>
 
 static int file_exists(char* file_name) {
   return access(file_name, F_OK) != -1;
@@ -49,6 +50,7 @@ int run_lua(char* main_file, int debug) {
     api_term_open(L);
     api_colors_open(L);
     api_os_open(L);
+    api_http_open(L);
 
     /* crypto */
     api_aes_open(L);
